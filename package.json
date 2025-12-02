@@ -1,13 +1,24 @@
 {
   "name": "cursoecmascript",
   "version": "1.0.0",
-  "description": "",
+  "description": "Curso completo de ECMAScript con ejemplos prácticos desde ES6 hasta ES13",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "javascript",
+    "ecmascript",
+    "es6",
+    "es7",
+    "es8",
+    "es9",
+    "es10",
+    "es11",
+    "es12",
+    "es13"
+  ],
+  "author": "Carla Mendía",
+  "license": "MIT",
   "type": "module"
 }
