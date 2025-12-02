@@ -1,0 +1,55 @@
+/*
+¿Qué es Optional Chaining?
+El Optional Chaining (?.) te permite acceder a propiedades anidadas sin preocuparte por errores si alguna propiedad no existe.
+
+Problema sin Optional Chaining:
+*/
+const usuario = {
+  nombre: 'Ana',
+  direccion: {
+    ciudad: 'Madrid'
+  }
+};
+
+// ❌ Sin optional chaining - puede dar error
+console.log(usuario.empresa.nombre); 
+// TypeError: Cannot read property 'nombre' of undefined
+
+// ✅ Solución antigua (validar manualmente)
+console.log(usuario.empresa && usuario.empresa.nombre);
+// undefined (no da error)
+
+// ✅ Con optional chaining
+console.log(usuario.empresa?.nombre);
+// undefined (no da error)
+
+
+
+//API RESPONSE (DATOS ANIDADOS)
+// Respuesta de API puede variar
+async function obtenerProducto(id) {
+  try {
+    const response = await fetch(`https://api.mitienda.com/productos/${id}`);
+    const data = await response.json();
+    
+    // Acceder a datos anidados de forma segura
+    const producto = {
+      nombre: data.nombre,
+      precio: data.precio,
+      descuento: data.promocion?.descuento ?? 0,
+      imagen: data.multimedia?.imagenes?.[0]?.url ?? 'default.jpg',
+      valoracion: data.reviews?.promedio ?? 'Sin valoraciones',
+      stock: data.inventario?.disponible ?? 0,
+      categoria: data.categoria?.nombre ?? 'Sin categoría'
+    };
+    
+    console.log(producto);
+    return producto;
+    
+  } catch (error) {
+    console.error('Error al obtener producto:', error);
+  }
+}
+
+// Uso
+obtenerProducto(123);
